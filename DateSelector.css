@@ -32,18 +32,29 @@
 
 .date-selector-container {
     width: 100%;
-    height: 250px;
+    height: 300px;
     position: absolute;
     bottom: 0;
     transform: translate3d(0, 101%, 0);
     -webkit-transform: translate3d(0, 101%, 0);
     left: 0;
-    background-color: #FFF;
     transition: transform .3s ease;
     -webkit-transition: -webkit-transform .3s ease;
     z-index: -1;
 }
-
+.date-selector-title{
+    height:50px;
+    line-height: 50px;
+    font-size:18px;
+    text-align: center;
+    border-bottom: 1px solid #d4d4d4;
+    position: absolute;top:0;
+    width: 100%;
+    text-shadow: 1px 1px 5px #333333;
+    color:#333333;
+    background-color:#ffffff;
+    z-index: 35;
+}
 .date-selector-container-up {
     transform: translate3d(0, 0, 0) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
@@ -56,16 +67,20 @@
     width: 100%;
     height: 50px;
     line-height: 50px;
-    background: rgba(218, 218, 218, .7);
-    z-index: 10;
+    top:50px;
+    background:#ffffff;
+    z-index: 22;
 }
 
 .date-selector-btn-box .date-selector-btn {
     position: absolute;
     display: inline-block;
-    margin: 0 20px;
-    color: #fff;
+    padding: 0 20px;
+    color: #333333;
     right: 0;
+}
+.date-selector-btn-box .date-selector-btn-confirm{
+    color:#ed3439;
 }
 
 .date-selector-btn-box .date-selector-btn:nth-child(1) {
@@ -80,9 +95,9 @@
     height: 32px;
     box-sizing: border-box;
     line-height: 30px;
-    color: rgba(218, 218, 218, .7);
+    color: #989898;
     background: #fff;
-    border: 1px solid #fff;
+    border: 1px solid #d4d4d4;
 }
 
 .date-selector-tab-box .date-selector-tab {
@@ -98,7 +113,7 @@
 .date-selector-tab-box .date-selector-tab-active {
     color: #fff;
     border-radius: 10px;
-    background: rgba(219, 219, 219, 1);
+    background-color:#ed3439;
 }
 
 .date-selector-content-left {
@@ -116,7 +131,7 @@
     width: 100%;
     background: #fff;
     font-size: 0;
-    top: 50px;
+    bottom:0;
     z-index: 10;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);

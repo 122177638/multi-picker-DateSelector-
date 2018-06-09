@@ -60,6 +60,9 @@
     this.end_time    = [new Date().getFullYear() + 1, 12, 31, 23, 59];
     this.recent_time = [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate(), new Date().getHours(), new Date().getMinutes()];
 
+    this.title_time = this.getDateTitle(this,this.recent_time);
+
+    
     this.initDomFuc();
     this.initReady();
     this.initBinding();
@@ -67,6 +70,20 @@
 
   DateSelector.prototype = {
     constructor: DateSelector,
+    getDateTitle(_that,timeArr){
+      var timetxt = ['年','月','日','时','分']
+      var time = [];
+      for(let i=0;i<_that.param.length;i++){
+        if(_that.param[i] == 1){
+          if(timeArr[i] < 10){
+            time.push('0'+timeArr[i]+timetxt[i])
+          }else{
+            time.push(timeArr[i]+timetxt[i])
+          }
+        }
+      }
+      return time.join('')
+    },
     checkParam: function () {
       var idxArr = [];
       var _this  = this;
@@ -187,8 +204,9 @@
       var html = '';
       html += '<div class="date-selector-bg" id="date-selector-bg-' + _this.container + '">' +
         '<div  class="date-selector-container" id="date-selector-container-' + _this.container + '">' +
+        '<div class="date-selector-title">'+_this.title_time+'</div>' +
         '<div class="date-selector-btn-box">' +
-        '<div class="date-selector-btn" id="date-selector-btn-cancel">返回</div>';
+        '<div class="date-selector-btn" id="date-selector-btn-cancel">取消</div>';
 
       if (this.type == 1) {
         html += '<div class="date-selector-tab-box">' +
@@ -197,7 +215,7 @@
           '</div>';
       }
 
-      html += '<div class="date-selector-btn" id="date-selector-btn-save-' + _this.container + '">确定</div>' +
+      html += '<div class="date-selector-btn date-selector-btn-confirm" id="date-selector-btn-save-' + _this.container + '">确定</div>' +
         '</div>' +
         '<div class="date-selector-content">';
 
@@ -306,7 +324,9 @@
           if (it < 10) it = ('0' + it);
           return it + '';
         });
+        
         _this.success(_this.resultArr, temp);
+        
         bg.classList.remove('date-selector-bg-up');
         container.classList.remove('date-selector-container-up');
         setTimeout(function () {
@@ -520,6 +540,7 @@
 
           that.recent_time[that.idxArr[idx]] = that.resultArr[idx] = that['array' + that.idxArr[idx]][tempRes];
           that.checkRange(0, (that.start.Y - that.end.Y) > 0);
+          document.querySelector('.date-selector-title').innerHTML = that.getDateTitle(that,that.resultArr)
           break;
         case "touchmove":
           event.preventDefault();
